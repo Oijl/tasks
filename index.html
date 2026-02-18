@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Roulette To-Do 🎰</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Roulette To-Do <span aria-hidden="true">🎰</span></h1>
+      <p class="sub">Spin a task that fits your time and place. No doom-scrolling your checklist 😄</p>
+    </header>
+
+    <main class="grid">
+      <section class="card">
+        <h2>Add Task ➕</h2>
+
+        <label>
+          Task name
+          <input id="taskName" type="text" placeholder="e.g., Sort 20 photos" />
+        </label>
+
+        <div class="row">
+          <label>
+            Duration (minutes)
+            <input id="taskDuration" type="number" min="1" step="1" placeholder="e.g., 15" />
+          </label>
+
+          <label>
+            Location
+            <input id="taskLocation" type="text" placeholder="e.g., Train / Home / Anywhere" />
+          </label>
+        </div>
+
+        <label>
+          Long-term group (optional)
+          <input id="taskGroup" type="text" placeholder="e.g., Spring Cleaning" />
+        </label>
+
+        <button id="addTaskBtn" class="primary">Add task</button>
+        <p id="addMsg" class="msg" aria-live="polite"></p>
+      </section>
+
+      <section class="card">
+        <h2>Spin 🎯</h2>
+
+        <div class="row">
+          <label>
+            Minutes you have now
+            <input id="timeAvailable" type="number" min="1" step="1" placeholder="e.g., 30" />
+          </label>
+
+          <label>
+            Location filter (optional)
+            <input id="locationFilter" type="text" placeholder="e.g., Train" />
+          </label>
+        </div>
+
+        <button id="spinBtn" class="primary">SPIN 🎰</button>
+
+        <div class="current">
+          <h3>Selected task</h3>
+          <div id="currentTaskBox" class="currentBox">
+            <p class="muted">Nothing selected yet. Spin the wheel 😄</p>
+          </div>
+
+          <div class="row actions">
+            <button id="doneBtn" class="good" disabled>Mark done ✅</button>
+            <button id="skipBtn" class="ghost" disabled>Clear selection</button>
+          </div>
+
+          <p id="timerLine" class="timer" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <section class="card wide">
+        <div class="row between">
+          <h2>Tasks 🗂️</h2>
+          <div class="row">
+            <button id="clearDoneBtn" class="ghost">Hide done (keep stored)</button>
+            <button id="wipeAllBtn" class="danger">Wipe all 💥</button>
+          </div>
+        </div>
+
+        <div id="taskList" class="list"></div>
+      </section>
+    </main>
+
+    <footer>
+      <p class="tiny muted">Stored on this device using localStorage. No cloud. No account. Just you and your spinning wheel 🎡</p>
+    </footer>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
