@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Roulette To-Do 🎰</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Roulette To-Do <span aria-hidden="true">🎰</span></h1>
+      <p class="sub">Pick your time, optionally pick your location, and let fate bonk you into productivity 😄</p>
+    </header>
+
+    <main>
+      <!-- =========================
+           SCREEN 1: CHOOSE (DEFAULT)
+      ========================== -->
+      <section id="screenChoose" class="screen">
+        <div class="card">
+          <div class="row between wrap">
+            <div>
+              <h2>Choose your time ⏱️</h2>
+              <p class="muted tiny">Big buttons. Tiny effort. Maximum momentum.</p>
+            </div>
+
+            <div class="stack">
+              <label class="tight">
+                Location
+                <select id="locationSelect">
+                  <option value="">(no location selected)</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          <div class="quickGrid" role="group" aria-label="Quick time buttons">
+            <button id="quick15" class="quickBtn primary">15 minutes</button>
+            <button id="quick30" class="quickBtn primary">30 minutes</button>
+            <button id="quick60" class="quickBtn primary">60 minutes</button>
+            <button id="quickCustom" class="quickBtn ghost">Custom</button>
+          </div>
+
+          <div id="customWrap" class="customWrap hidden" aria-hidden="true">
+            <label class="tight">
+              Custom minutes
+              <input id="customMinutes" type="number" min="1" step="1" placeholder="e.g., 42" />
+            </label>
+            <button id="customGo" class="primary">Spin custom 🎰</button>
+          </div>
+
+          <button id="viewTasksBtn" class="ghost wideBtn">View/add tasks 🗂️</button>
+        </div>
+
+        <section class="card">
+          <h2>Result 🎯</h2>
+
+          <div class="current">
+            <h3>Selected task</h3>
+            <div id="currentTaskBox" class="currentBox">
+              <p class="muted">Nothing selected yet. Smash a time button up there 😄</p>
+            </div>
+
+            <div class="row actions">
+              <button id="doneBtn" class="good" disabled>Mark done ✅</button>
+              <button id="skipBtn" class="ghost" disabled>Clear selection</button>
+            </div>
+
+            <p id="timerLine" class="timer" aria-live="polite"></p>
+          </div>
+        </section>
+      </section>
+
+      <!-- =========================
+           SCREEN 2: TASKS
+      ========================== -->
+      <section id="screenTasks" class="screen hidden" aria-hidden="true">
+        <div class="row between wrap">
+          <h2 class="pageTitle">Tasks 🗂️</h2>
+          <button id="backToChooseBtn" class="ghost">← Back to choose</button>
+        </div>
+
+        <div class="grid">
+          <section class="card">
+            <hr class="sep" />
+
+            <h3 class="mini">Bulk add via CSV 📄</h3>
+
+            <label>
+              Upload .csv
+              <input id="csvFile" type="file" accept=".csv,text/csv" />
+            </label>
+
+            <div class="row">
+              <button id="importCsvBtn" class="ghost">Import CSV ➕</button>
+            </div>
+
+            <p class="tiny muted">
+              Format per row: <strong>name, duration, location, (optional) group</strong>
+            </p>
+
+            <p id="csvMsg" class="msg" aria-live="polite"></p>
+            <hr class="sep" />
+
+            <h2>Add Task ➕</h2>
+
+            <label>
+              Task name
+              <input id="taskName" type="text" placeholder="e.g., Sort 20 photos" />
+            </label>
+
+            <div class="row">
+              <label>
+                Duration (minutes)
+                <input id="taskDuration" type="number" min="1" step="1" placeholder="e.g., 15" />
+              </label>
+
+              <label>
+                Location
+                <input id="taskLocation" type="text" placeholder="e.g., Train / Home / Anywhere" />
+              </label>
+            </div>
+
+            <label>
+              Long-term group (optional)
+              <input id="taskGroup" type="text" placeholder="e.g., Spring Cleaning" />
+            </label>
+
+            <button id="addTaskBtn" class="primary">Add task</button>
+            <p id="addMsg" class="msg" aria-live="polite"></p>
+          </section>
+
+          <section class="card wide">
+            <div class="row between wrap">
+              <div>
+                <h2>Task list 📋</h2>
+                <p class="tiny muted">Select a task to preview it on the Choose screen. Mark done to banish it from future spins. 👋</p>
+              </div>
+
+              <div class="row">
+                <button id="clearDoneBtn" class="ghost">Hide done (keep stored)</button>
+                <button id="wipeAllBtn" class="danger">Wipe all 💥</button>
+              </div>
+            </div>
+
+            <div id="taskList" class="list"></div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p class="tiny muted">Stored on this device using localStorage. No cloud. No account. Just you and your spinning wheel 🎡</p>
+    </footer>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
