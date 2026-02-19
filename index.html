@@ -15,6 +15,26 @@
 
     <main class="grid">
       <section class="card">
+	<hr class="sep" />
+
+	<h3 class="mini">Bulk add via CSV 📄</h3>
+
+	<label>
+	  Upload .csv
+	  <input id="csvFile" type="file" accept=".csv,text/csv" />
+	</label>
+
+	<div class="row">
+	  <button id="importCsvBtn" class="ghost">Import CSV ➕</button>
+	</div>
+
+	<p class="tiny muted">
+	  Format per row: <strong>name, duration, location, (optional) group</strong>
+	</p>
+
+	<p id="csvMsg" class="msg" aria-live="polite"></p>
+	<hr class="sep" />
+
         <h2>Add Task ➕</h2>
 
         <label>
